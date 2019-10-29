@@ -2167,7 +2167,14 @@ SKIP_FUNCTION_MACROS   = YES
 # the path). If a tag file is not located in the directory in which doxygen is
 # run, you must also specify the path to the tagfile here.
 
-TAGFILES               =
+TAGFILES               = \
+    /Users/clare/Documents/develop/tools/qt/Docs/Qt-5.12.5/qtcore/qtcore.tags=http://qt-project.org/doc/qt-5/ \
+    /Users/clare/Documents/develop/tools/qt/Docs/Qt-5.12.5/qtconcurrent/qtconcurrent.tags=http://qt-project.org/doc/qt-5/ \
+    /Users/clare/Documents/develop/tools/qt/Docs/Qt-5.12.5/qtprintsupport/qtprintsupport.tags=http://qt-project.org/doc/qt-5/ \
+    /Users/clare/Documents/develop/tools/qt/Docs/Qt-5.12.5/qtqml/qtqml.tags=http://qt-project.org/doc/qt-5/ \
+    /Users/clare/Documents/develop/tools/qt/Docs/Qt-5.12.5/qtsql/qtsql.tags=http://qt-project.org/doc/qt-5/ \
+    /Users/clare/Documents/develop/tools/qt/Docs/Qt-5.12.5/qtwebengine/qtwebengine.tags=http://qt-project.org/doc/qt-5/ \
+    /Users/clare/Documents/develop/tools/qt/Docs/Qt-5.12.5/qtwidgets/qtwidgets.tags=http://qt-project.org/doc/qt-5/
 
 # When a file name is specified after GENERATE_TAGFILE, doxygen will create a
 # tag file that is based on the input files it reads. See section "Linking to
