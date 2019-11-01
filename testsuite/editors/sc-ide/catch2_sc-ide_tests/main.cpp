@@ -1,14 +1,18 @@
-#include <iostream>
+#define CATCH_CONFIG_RUNNER
+#include "catch.hpp"
+
 #include <QApplication>
-#include "widgets/util/color_widget.hpp"
 
-using namespace ScIDE;
+// For explanation of Catch code, see https://github.com/catchorg/Catch2/blob/master/docs/own-main.md
+int main( int argc, char* argv[] ) {
+    Catch::Session session;
 
-int main(int argc, char* argv[]) {
-    std::cout << "Hello\n";
+    int returnCode = session.applyCommandLine( argc, argv );
+    if( returnCode != 0 ) // Indicates a command line error
+        return returnCode;
+
+    // Set up exactly one QApplication, so we can create QWidgets in tests
     QApplication app(argc, argv);
-    ColorWidget widget;
-    widget.show();
-    widget.raise();
-    return app.exec();
+
+    return session.run();
 }
