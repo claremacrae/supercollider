@@ -1,7 +1,6 @@
 #include "catch.hpp"
 
-// TODO Could move this test to a sub-directory widgets/util, as number of tests grows
-#include "widgets/util/color_widget.hpp"
+#include "color_widget.hpp"
 
 #include "catch_qt_string_makers.hpp"
 

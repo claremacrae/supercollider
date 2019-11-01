@@ -4,7 +4,7 @@ set(exe_name "catch2_sc-ide_tests")
 add_executable(${exe_name}
         main.cpp
         test_helpers/catch_qt_string_makers.hpp
-        color_widget_tests.cpp
+        widgets/util/color_widget_tests.cpp
         catch.hpp)
 target_link_libraries( ${exe_name} libscide)
 target_include_directories(${exe_name} PRIVATE
