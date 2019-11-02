@@ -1,6 +1,11 @@
 # TODO Would be nice to remove autogen targets from CLion's list of available targets
 set(CMAKE_AUTOMOC ON)
 
+# As moc files are generated in the binary dir, tell CLion
+# to always look for includes there, to stop it complaining about
+# missing .moc files in tests that use Qt Test.
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 find_package(Qt5 COMPONENTS Test REQUIRED)
 
 # Work out how to add include multiple tests in one executable
