@@ -1,7 +1,7 @@
 #include <QTest>
 #include <QSignalSpy>
 
-#include "auto_test.h"
+#include "auto_test.hpp"
 
 #include "goto_line_tool.hpp"
 

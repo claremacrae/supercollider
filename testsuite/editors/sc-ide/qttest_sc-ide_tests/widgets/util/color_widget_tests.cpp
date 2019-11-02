@@ -1,6 +1,6 @@
 #include <QTest>
 
-#include "auto_test.h"
+#include "auto_test.hpp"
 
 #include "color_widget.hpp"
 
