@@ -20,28 +20,22 @@ private slots:
         auto goButton = widget.findChild<QToolButton*>();
         QVERIFY2(goButton, "This test is no longer valid: the class being test has been changed");
 
+        // This is needed to may sure that text in the spinner is selected, so that
+        // as we type in characters, the initial text ("1") is erased
         widget.setFocus();
-        QApplication::processEvents(QEventLoop::AllEvents);
-        QVERIFY(spinner->hasFocus());
 
         QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
         QVERIFY(activatedSpy.isValid());
 
-        // Type a number
+        // Type a number, one digit at a time
         QTest::keyClicks(spinner, "1");
         QTest::keyClicks(spinner, "7");
-        QApplication::processEvents(QEventLoop::AllEvents);
 
         // Check that no signals have yet been emitted:
         QCOMPARE(activatedSpy.count(), 0);
 
         // Clicking the Go button:
         goButton->click();
-        QApplication::processEvents(QEventLoop::AllEvents);
-        QVERIFY(spinner->hasFocus());
-
-        activatedSpy.wait(1000);
-        QVERIFY(spinner->hasFocus());
 
         // Check the activated() signal was emitted only once:
         QCOMPARE(activatedSpy.count(), 1);
@@ -50,7 +44,7 @@ private slots:
         QList<QVariant> arguments = activatedSpy.takeFirst();
         QVariant argument = arguments.at(0);
         QVERIFY(argument.type() == QVariant::Int);
-        QVERIFY(argument.toInt() == 17);
+        QCOMPARE(argument.toInt(), 17);
     }
 
 };
