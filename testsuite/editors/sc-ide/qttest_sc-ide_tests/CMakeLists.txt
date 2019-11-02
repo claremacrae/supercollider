@@ -2,8 +2,11 @@ set(exe_name "qttest_sc-ide_tests")
 
 set(CMAKE_AUTOMOC ON)
 
+# Work out how to add include multiple tests in one executable
+# https://stackoverflow.com/questions/12194256/qt-how-to-organize-unit-test-with-more-than-one-class
+
 add_executable(${exe_name}
-        main.cpp
+        widgets/util/color_widget_tests.cpp
         )
 
 find_package(Qt5 COMPONENTS Test REQUIRED)
