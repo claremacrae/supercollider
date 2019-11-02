@@ -158,3 +158,6 @@ if(WIN32)
   target_link_libraries(portmidi PRIVATE winmm.lib)
   target_compile_definitions(portmidi INTERFACE HAVE_PORTMIDI)
 endif()
+
+# catch (named as catch, not catch2, to allow catch2 to be added as a submodule in future)
+add_subdirectory(catch)
