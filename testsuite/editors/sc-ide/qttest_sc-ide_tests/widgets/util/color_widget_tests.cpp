@@ -1,5 +1,7 @@
 #include <QTest>
 
+#include "auto_test.h"
+
 #include "color_widget.hpp"
 
 using namespace ScIDE;
@@ -27,5 +29,5 @@ private slots:
     }
 };
 
-QTEST_MAIN(ColorWidgetTests)
+DECLARE_TEST(ColorWidgetTests)
 #include "color_widget_tests.moc"

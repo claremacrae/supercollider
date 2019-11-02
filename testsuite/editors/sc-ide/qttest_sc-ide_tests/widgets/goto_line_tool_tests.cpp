@@ -1,6 +1,8 @@
 #include <QTest>
 #include <QSignalSpy>
 
+#include "auto_test.h"
+
 #include "goto_line_tool.hpp"
 
 using namespace ScIDE;
@@ -46,8 +48,7 @@ private slots:
         QVERIFY(argument.type() == QVariant::Int);
         QCOMPARE(argument.toInt(), 17);
     }
-
 };
 
-QTEST_MAIN(GoToLineToolTests)
+DECLARE_TEST(GoToLineToolTests)
 #include "goto_line_tool_tests.moc"
