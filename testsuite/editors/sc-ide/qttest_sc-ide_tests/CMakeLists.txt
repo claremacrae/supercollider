@@ -1,5 +1,6 @@
 set(exe_name "qttest_sc-ide_tests")
 
+# TODO Would be nice to remove autogen targets from CLion's list of available targets
 set(CMAKE_AUTOMOC ON)
 
 # Work out how to add include multiple tests in one executable
