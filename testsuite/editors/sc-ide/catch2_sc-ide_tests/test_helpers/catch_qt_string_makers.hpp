@@ -9,8 +9,14 @@
 namespace Catch {
 template <> struct StringMaker<QColor> {
     static std::string convert(QColor const& color) {
-        const QString result = "(" % QString::number(color.redF()) % ", " % QString::number(color.greenF()) % ", "
-            % QString::number(color.blueF()) % "), alpha = " % QString::number(color.alphaF(), 'g', 20);
+        // clang-format off
+        const QString result = "(" %
+                QString::number(color.redF()) % ", " %
+                QString::number(color.greenF()) % ", " %
+                QString::number(color.blueF()) %
+                "), alpha = " %
+                QString::number(color.alphaF(), 'g', 20);
+        // clang-format on
         return result.toStdString();
     }
 };
