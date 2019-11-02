@@ -10,7 +10,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_executable(${exe_name}
         main.cpp
-        # All of these files must register their tests using "auto_test.h":
+        test_helpers/auto_test.hpp
+        # All of these files must register their tests using "auto_test.hpp":
         widgets/goto_line_tool_tests.cpp
         widgets/util/color_widget_tests.cpp
         )
