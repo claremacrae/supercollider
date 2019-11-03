@@ -63,7 +63,7 @@ public:
 
 #define DECLARE_TEST(className) static Test<className> t(#className);
 
-#define TEST_MAIN                                                                                                      \
+#define TEST_MAIN_WITH_QAPPLICATION                                                                                    \
     int main(int argc, char* argv[]) {                                                                                 \
         QApplication app(argc, argv);                                                                                  \
         return AutoTest::run(argc, argv);                                                                              \
