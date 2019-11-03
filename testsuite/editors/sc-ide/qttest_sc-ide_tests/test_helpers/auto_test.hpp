@@ -12,6 +12,15 @@
  * by adding this after each of the QObject-based tests:
  *     <tt>DECLARE_TEST(<whatever the QObject class name is>)</tt>
  *
+ * This may honour all the standard Qt Test arguments controlling outputs - see:
+ *  https://doc.qt.io/qt-5/qtest-overview.html#qt-test-command-line-arguments
+ *
+ *  Things to check:
+ *  * When there are multiple tests and an output file is requested, are tests failures
+ *    from multiple tests written out, or does it keep overwriting the output for each qExec call
+ *  * When test names are supplied, does it only run those tests? Does it generate error messages
+ *    when running the non-matching test classes.
+ *
  * Credit: http://qtcreator.blogspot.com/2009/10/running-multiple-unit-tests.html
  */
 namespace AutoTest {
