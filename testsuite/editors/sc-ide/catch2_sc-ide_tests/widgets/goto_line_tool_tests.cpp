@@ -13,6 +13,10 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
     GoToLineTool widget;
     widget.raise();
     widget.show();
+    // TODO Maybe use QTest::qWaitForWindowExposed()
+    // https://doc.qt.io/qt-5/qtest.html#qWaitForWindowExposed
+    // TODO Do we need to create a QWindow first, as parent for this?
+    // TODO Do we need to make sure widget has a non-null parent?
     widget.setMaximum(27);
 
     auto spinner = widget.findChild<QSpinBox*>();
