@@ -60,7 +60,7 @@ protected:
 
     void checkActivatedSignalValue(int expectedValue) {
         QList<QVariant> arguments = mActivatedSpy->takeFirst();
-        QVariant argument = arguments.at(0);
+        const QVariant& argument = arguments.at(0);
         CHECK(argument.type() == QVariant::Int);
         CHECK(argument.toInt() == expectedValue);
     }
