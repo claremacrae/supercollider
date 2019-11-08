@@ -15,7 +15,7 @@ protected:
     QSpinBox* mSpinner = nullptr;
     QToolButton* mGoButton = nullptr;
 private:
-    std::unique_ptr<QSignalSpy> activatedSpy;
+    std::unique_ptr<QSignalSpy> mActivatedSpy;
 
 protected:
     GoToLineToolFixture() {
@@ -39,16 +39,16 @@ protected:
             REQUIRE(mGoButton != nullptr);
         }
 
-        activatedSpy = std::unique_ptr<QSignalSpy>(new QSignalSpy(&mGoToLineWidget, SIGNAL(activated(int))));
-        REQUIRE(activatedSpy->isValid());
+        mActivatedSpy = std::unique_ptr<QSignalSpy>(new QSignalSpy(&mGoToLineWidget, SIGNAL(activated(int))));
+        REQUIRE(mActivatedSpy->isValid());
     }
 
     void checkActivatedSignalCount(int expectedCount) {
-        REQUIRE(activatedSpy->count() == expectedCount);
+        REQUIRE(mActivatedSpy->count() == expectedCount);
     }
 
     void checkActivatedSignalValue(int expectedValue) {
-        QList<QVariant> arguments = activatedSpy->takeFirst();
+        QList<QVariant> arguments = mActivatedSpy->takeFirst();
         QVariant argument = arguments.at(0);
         CHECK(argument.type() == QVariant::Int);
         CHECK(argument.toInt() == expectedValue);
