@@ -11,13 +11,13 @@ using namespace ScIDE;
 
 class GoToLineToolFixture {
 protected:
-    GoToLineTool widget;
-    QSpinBox* spinner = nullptr;
-    QToolButton* goButton = nullptr;
+    GoToLineTool mGoToLineWidget;
+    QSpinBox* mSpinner = nullptr;
+    QToolButton* mGoButton = nullptr;
 
     GoToLineToolFixture() {
-        widget.raise();
-        widget.show();
+        mGoToLineWidget.raise();
+        mGoToLineWidget.show();
         // TODO Maybe use QTest::qWaitForWindowExposed()
         // https://doc.qt.io/qt-5/qtest.html#qWaitForWindowExposed
         // TODO Do we need to create a QWindow first, as parent for this?
@@ -25,34 +25,34 @@ protected:
 
         // This is needed to may sure that text in the spinner is selected, so that
         // as we type in characters, the initial text ("1") is erased
-        widget.setFocus();
+        mGoToLineWidget.setFocus();
 
-        spinner = widget.findChild<QSpinBox*>();
-        goButton = widget.findChild<QToolButton*>();
+        mSpinner = mGoToLineWidget.findChild<QSpinBox*>();
+        mGoButton = mGoToLineWidget.findChild<QToolButton*>();
 
         {
             INFO("This test is no longer valid: the class being test has been changed");
-            REQUIRE(spinner != nullptr);
-            REQUIRE(goButton != nullptr);
+            REQUIRE(mSpinner != nullptr);
+            REQUIRE(mGoButton != nullptr);
         }
     }
 };
 
 TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button clicked") {
-    widget.setMaximum(27);
+    mGoToLineWidget.setMaximum(27);
 
-    QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
+    QSignalSpy activatedSpy(&mGoToLineWidget, SIGNAL(activated(int)));
     REQUIRE(activatedSpy.isValid());
 
     // Type a number, one digit at a time
-    QTest::keyClicks(spinner, "1");
-    QTest::keyClicks(spinner, "7");
+    QTest::keyClicks(mSpinner, "1");
+    QTest::keyClicks(mSpinner, "7");
 
     // Check that no signals have yet been emitted:
     REQUIRE(activatedSpy.count() == 0);
 
     // Clicking the Go button:
-    goButton->click();
+    mGoButton->click();
 
     // Check the activated() signal was emitted only once:
     REQUIRE(activatedSpy.count() == 1);
