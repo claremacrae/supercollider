@@ -10,12 +10,12 @@ using namespace ScIDE;
 class GoToLineToolTests : public QObject {
     Q_OBJECT
 private:
-    std::auto_ptr<GoToLineTool> mGoToLineWidget;
+    std::unique_ptr<GoToLineTool> mGoToLineWidget;
     QSpinBox* mSpinner = nullptr;
     QToolButton* mGoButton = nullptr;
 private slots:
     void init() {
-        mGoToLineWidget = std::auto_ptr<GoToLineTool>(new GoToLineTool);
+        mGoToLineWidget = std::unique_ptr<GoToLineTool>(new GoToLineTool);
         mGoToLineWidget->raise();
         mGoToLineWidget->show();
         // TODO Maybe use QTest::qWaitForWindowExposed()
