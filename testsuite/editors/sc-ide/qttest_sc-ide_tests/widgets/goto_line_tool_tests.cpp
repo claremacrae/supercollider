@@ -7,6 +7,11 @@
 
 using namespace ScIDE;
 
+// TODO I am expecting that this code will be discarded - but if it is not, I'll compare it with
+//      that in testsuite/editors/sc-ide/catch2_sc-ide_tests/widgets/goto_line_tool_tests.cpp
+//      and apply the refactorings there to this, to make the actual test function much
+//      more expressive.
+
 class GoToLineToolTests : public QObject {
     Q_OBJECT
 private:
