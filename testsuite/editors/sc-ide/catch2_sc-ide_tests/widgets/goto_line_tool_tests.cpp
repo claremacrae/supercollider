@@ -29,14 +29,8 @@ protected:
         // as we type in characters, the initial text ("1") is erased
         mGoToLineWidget.setFocus();
 
-        mSpinner = mGoToLineWidget.findChild<QSpinBox*>();
-        mGoButton = mGoToLineWidget.findChild<QToolButton*>();
-
-        {
-            INFO("This test is no longer valid: the class being test has been changed");
-            REQUIRE(mSpinner != nullptr);
-            REQUIRE(mGoButton != nullptr);
-        }
+        mSpinner = findWidgetOfType<QSpinBox>();
+        mGoButton = findWidgetOfType<QToolButton>();
 
         mActivatedSpy = std::unique_ptr<QSignalSpy>(new QSignalSpy(&mGoToLineWidget, SIGNAL(activated(int))));
         REQUIRE(mActivatedSpy->isValid());
@@ -63,6 +57,14 @@ protected:
         const QVariant& argument = arguments.at(0);
         CHECK(argument.type() == QVariant::Int);
         CHECK(argument.toInt() == expectedValue);
+    }
+private:
+    template<class WidgetType>
+    WidgetType* findWidgetOfType() {
+        auto result = mGoToLineWidget.findChild<WidgetType*>();
+        INFO("This test is no longer valid: the class being test has been changed");
+        REQUIRE(result != nullptr);
+        return result;
     }
 };
 
