@@ -36,7 +36,7 @@ protected:
         mGoToLineWidget.setMaximum(27);
     }
 
-    void typeCharacterInSpinner(QChar character) {
+    void typeCharacterIntoSpinner(QChar character) {
         QTest::keyClicks(mSpinner, character);
     }
 
@@ -70,8 +70,8 @@ TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button 
     setMaximumLineCount(27);
 
     // Type a number, one digit at a time
-    typeCharacterInSpinner('1');
-    typeCharacterInSpinner('7');
+    typeCharacterIntoSpinner('1');
+    typeCharacterIntoSpinner('7');
     checkActivatedSignalCount(0);
 
     clickGoButton();
