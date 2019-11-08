@@ -32,21 +32,13 @@ protected:
         REQUIRE(mActivatedSpy->isValid());
     }
 
-    void setMaximumLineCount(int maxLines) {
-        mGoToLineWidget.setMaximum(27);
-    }
+    void setMaximumLineCount(int maxLines) { mGoToLineWidget.setMaximum(27); }
 
-    void typeCharacterIntoSpinner(QChar character) {
-        QTest::keyClicks(mSpinner, character);
-    }
+    void typeCharacterIntoSpinner(QChar character) { QTest::keyClicks(mSpinner, character); }
 
-    void clickGoButton() {
-        mGoButton->click();
-    }
+    void clickGoButton() { mGoButton->click(); }
 
-    void checkActivatedSignalCount(int expectedCount) {
-        REQUIRE(mActivatedSpy->count() == expectedCount);
-    }
+    void checkActivatedSignalCount(int expectedCount) { REQUIRE(mActivatedSpy->count() == expectedCount); }
 
     void checkActivatedSignalValue(int expectedValue) {
         QList<QVariant> arguments = mActivatedSpy->takeFirst();
@@ -54,9 +46,9 @@ protected:
         CHECK(argument.type() == QVariant::Int);
         CHECK(argument.toInt() == expectedValue);
     }
+
 private:
-    template<class WidgetType>
-    WidgetType* findWidgetOfType() {
+    template <class WidgetType> WidgetType* findWidgetOfType() {
         auto result = mGoToLineWidget.findChild<WidgetType*>();
         INFO("This test is no longer valid: the class being test has been changed");
         REQUIRE(result != nullptr);
@@ -76,5 +68,5 @@ TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button 
 
     clickGoButton();
     checkActivatedSignalCount(1);
-    checkActivatedSignalValue( 17 );
+    checkActivatedSignalValue(17);
 }
