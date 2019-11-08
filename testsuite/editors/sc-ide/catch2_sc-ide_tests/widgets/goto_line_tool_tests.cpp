@@ -12,6 +12,8 @@ using namespace ScIDE;
 class GoToLineToolFixture {
 protected:
     GoToLineTool widget;
+    QSpinBox* spinner = nullptr;
+    QToolButton* goButton = nullptr;
 
     GoToLineToolFixture() {
         widget.raise();
@@ -24,20 +26,20 @@ protected:
         // This is needed to may sure that text in the spinner is selected, so that
         // as we type in characters, the initial text ("1") is erased
         widget.setFocus();
+
+        spinner = widget.findChild<QSpinBox*>();
+        goButton = widget.findChild<QToolButton*>();
+
+        {
+            INFO("This test is no longer valid: the class being test has been changed");
+            REQUIRE(spinner != nullptr);
+            REQUIRE(goButton != nullptr);
+        }
     }
 };
 
 TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button clicked") {
     widget.setMaximum(27);
-
-    auto spinner = widget.findChild<QSpinBox*>();
-    auto goButton = widget.findChild<QToolButton*>();
-
-    {
-        INFO("This test is no longer valid: the class being test has been changed");
-        REQUIRE(spinner != nullptr);
-        REQUIRE(goButton != nullptr);
-    }
 
     QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
     REQUIRE(activatedSpy.isValid());
