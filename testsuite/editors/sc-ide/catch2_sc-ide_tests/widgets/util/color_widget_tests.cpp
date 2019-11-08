@@ -18,7 +18,7 @@ TEST_CASE("ColorWidget changing color updates and emits correctly") {
     // Arrange
     ColorWidget widget;
     QColor red("red");
-    QSignalSpy colorChangedSpy(&widget, SIGNAL(colorChanged(const QColor&)));
+    QSignalSpy colorChangedSpy(&widget, &ColorWidget::colorChanged);
     REQUIRE(colorChangedSpy.isValid());
 
     // Act

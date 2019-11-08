@@ -28,7 +28,7 @@ protected:
         mSpinner = findWidgetOfType<QSpinBox>();
         mGoButton = findWidgetOfType<QToolButton>();
 
-        mActivatedSpy = std::unique_ptr<QSignalSpy>(new QSignalSpy(&mGoToLineWidget, SIGNAL(activated(int))));
+        mActivatedSpy = std::unique_ptr<QSignalSpy>(new QSignalSpy(&mGoToLineWidget, &GoToLineTool::activated));
         REQUIRE(mActivatedSpy->isValid());
     }
 
