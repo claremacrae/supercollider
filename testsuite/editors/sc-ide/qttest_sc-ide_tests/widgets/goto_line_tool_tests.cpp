@@ -33,6 +33,13 @@ private slots:
         mGoButton = mGoToLineWidget->findChild<QToolButton*>();
         QVERIFY2(mGoButton, "This test is no longer valid: the class being test has been changed");
     }
+
+    void cleanup() {
+        mGoToLineWidget.release();
+        mSpinner = nullptr;
+        mGoButton = nullptr;
+    }
+
     void testSignalEmittedWhenGoButtonClicked() {
         mGoToLineWidget->setMaximum(27);
 
