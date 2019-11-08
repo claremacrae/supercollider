@@ -50,7 +50,9 @@ protected:
 private:
     template <class WidgetType> WidgetType* findWidgetOfType() {
         auto result = mGoToLineWidget.findChild<WidgetType*>();
-        INFO("This test is no longer valid: the class being test has been changed");
+        INFO("This test is no longer valid: GoToLineTool has been changed and no longer has a " <<
+             typeid(WidgetType).name()
+        );
         REQUIRE(result != nullptr);
         return result;
     }
