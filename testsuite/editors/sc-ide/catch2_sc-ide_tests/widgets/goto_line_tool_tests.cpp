@@ -10,9 +10,8 @@ using namespace ScIDE;
 // DO NOT USE ANY Qt Test checkers, like QVERIFY, QCOMPARE - as any test failures are currently not detected
 
 class GoToLineToolFixture {
-protected:
-    GoToLineTool mGoToLineWidget;
 private:
+    GoToLineTool mGoToLineWidget;
     QSpinBox* mSpinner = nullptr;
     QToolButton* mGoButton = nullptr;
     std::unique_ptr<QSignalSpy> mActivatedSpy;
@@ -43,6 +42,10 @@ protected:
         REQUIRE(mActivatedSpy->isValid());
     }
 
+    void setMaximumLineCount(int maxLines) {
+        mGoToLineWidget.setMaximum(27);
+    }
+
     void typeCharacterInSpinner(QChar character) {
         QTest::keyClicks(mSpinner, character);
     }
@@ -64,7 +67,7 @@ protected:
 };
 
 TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button clicked") {
-    mGoToLineWidget.setMaximum(27);
+    setMaximumLineCount(27);
 
     // Type a number, one digit at a time
     typeCharacterInSpinner('1');
