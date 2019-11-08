@@ -11,6 +11,8 @@ class GoToLineToolTests : public QObject {
     Q_OBJECT
 private:
     std::auto_ptr<GoToLineTool> widget;
+    QSpinBox* spinner = nullptr;
+    QToolButton* goButton = nullptr;
 private slots:
     void init() {
         widget = std::auto_ptr<GoToLineTool>(new GoToLineTool);
@@ -24,15 +26,15 @@ private slots:
         // This is needed to may sure that text in the spinner is selected, so that
         // as we type in characters, the initial text ("1") is erased
         widget->setFocus();
+
+        spinner = widget->findChild<QSpinBox*>();
+        QVERIFY2(spinner, "This test is no longer valid: the class being test has been changed");
+
+        goButton = widget->findChild<QToolButton*>();
+        QVERIFY2(goButton, "This test is no longer valid: the class being test has been changed");
     }
     void testSignalEmittedWhenGoButtonClicked() {
         widget->setMaximum(27);
-
-        auto spinner = widget->findChild<QSpinBox*>();
-        QVERIFY2(spinner, "This test is no longer valid: the class being test has been changed");
-
-        auto goButton = widget->findChild<QToolButton*>();
-        QVERIFY2(goButton, "This test is no longer valid: the class being test has been changed");
 
         QSignalSpy activatedSpy(widget.get(), SIGNAL(activated(int)));
         QVERIFY(activatedSpy.isValid());
