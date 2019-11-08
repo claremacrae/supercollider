@@ -13,8 +13,8 @@ class GoToLineToolFixture {
 protected:
     GoToLineTool mGoToLineWidget;
     QSpinBox* mSpinner = nullptr;
-    QToolButton* mGoButton = nullptr;
 private:
+    QToolButton* mGoButton = nullptr;
     std::unique_ptr<QSignalSpy> mActivatedSpy;
 
 protected:
@@ -43,6 +43,10 @@ protected:
         REQUIRE(mActivatedSpy->isValid());
     }
 
+    void clickGoButton() {
+        mGoButton->click();
+    }
+
     void checkActivatedSignalCount(int expectedCount) {
         REQUIRE(mActivatedSpy->count() == expectedCount);
     }
@@ -66,7 +70,7 @@ TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button 
     checkActivatedSignalCount(0);
 
     // Clicking the Go button:
-    mGoButton->click();
+    clickGoButton();
 
     // Check the activated() signal was emitted only once:
     checkActivatedSignalCount(1);
