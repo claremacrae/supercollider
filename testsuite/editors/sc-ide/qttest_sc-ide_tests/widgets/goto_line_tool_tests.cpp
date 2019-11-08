@@ -10,14 +10,14 @@ using namespace ScIDE;
 class GoToLineToolTests : public QObject {
     Q_OBJECT
 private:
-    std::auto_ptr<GoToLineTool> widget;
-    QSpinBox* spinner = nullptr;
-    QToolButton* goButton = nullptr;
+    std::auto_ptr<GoToLineTool> mGoToLineWidget;
+    QSpinBox* mSpinner = nullptr;
+    QToolButton* mGoButton = nullptr;
 private slots:
     void init() {
-        widget = std::auto_ptr<GoToLineTool>(new GoToLineTool);
-        widget->raise();
-        widget->show();
+        mGoToLineWidget = std::auto_ptr<GoToLineTool>(new GoToLineTool);
+        mGoToLineWidget->raise();
+        mGoToLineWidget->show();
         // TODO Maybe use QTest::qWaitForWindowExposed()
         // https://doc.qt.io/qt-5/qtest.html#qWaitForWindowExposed
         // TODO Do we need to create a QWindow first, as parent for this?
@@ -25,29 +25,29 @@ private slots:
 
         // This is needed to may sure that text in the spinner is selected, so that
         // as we type in characters, the initial text ("1") is erased
-        widget->setFocus();
+        mGoToLineWidget->setFocus();
 
-        spinner = widget->findChild<QSpinBox*>();
-        QVERIFY2(spinner, "This test is no longer valid: the class being test has been changed");
+        mSpinner = mGoToLineWidget->findChild<QSpinBox*>();
+        QVERIFY2(mSpinner, "This test is no longer valid: the class being test has been changed");
 
-        goButton = widget->findChild<QToolButton*>();
-        QVERIFY2(goButton, "This test is no longer valid: the class being test has been changed");
+        mGoButton = mGoToLineWidget->findChild<QToolButton*>();
+        QVERIFY2(mGoButton, "This test is no longer valid: the class being test has been changed");
     }
     void testSignalEmittedWhenGoButtonClicked() {
-        widget->setMaximum(27);
+        mGoToLineWidget->setMaximum(27);
 
-        QSignalSpy activatedSpy(widget.get(), SIGNAL(activated(int)));
+        QSignalSpy activatedSpy(mGoToLineWidget.get(), SIGNAL(activated(int)));
         QVERIFY(activatedSpy.isValid());
 
         // Type a number, one digit at a time
-        QTest::keyClicks(spinner, "1");
-        QTest::keyClicks(spinner, "7");
+        QTest::keyClicks(mSpinner, "1");
+        QTest::keyClicks(mSpinner, "7");
 
         // Check that no signals have yet been emitted:
         QCOMPARE(activatedSpy.count(), 0);
 
         // Clicking the Go button:
-        goButton->click();
+        mGoButton->click();
 
         // Check the activated() signal was emitted only once:
         QCOMPARE(activatedSpy.count(), 1);
