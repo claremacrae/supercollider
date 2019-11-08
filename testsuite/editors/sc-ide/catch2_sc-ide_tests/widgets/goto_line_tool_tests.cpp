@@ -40,11 +40,12 @@ protected:
 
     void checkActivatedSignalCount(int expectedCount) { REQUIRE(mActivatedSpy->count() == expectedCount); }
 
-    void checkActivatedSignalValue(int expectedValue) {
+    void checkActivatedSignalValue(int expectedSignalValue) {
+        INFO("Check GoToLineTool::activated() signal has been emitted with correct value.");
         QList<QVariant> arguments = mActivatedSpy->takeFirst();
-        const QVariant& argument = arguments.at(0);
-        CHECK(argument.type() == QVariant::Int);
-        CHECK(argument.toInt() == expectedValue);
+        const QVariant& signalArgument = arguments.at(0);
+        CHECK(signalArgument.type() == QVariant::Int);
+        CHECK(signalArgument.toInt() == expectedSignalValue);
     }
 
 private:
