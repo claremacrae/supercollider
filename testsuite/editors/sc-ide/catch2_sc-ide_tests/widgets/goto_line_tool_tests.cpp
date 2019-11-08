@@ -20,13 +20,9 @@ protected:
     GoToLineToolFixture() {
         mGoToLineWidget.raise();
         mGoToLineWidget.show();
-        // TODO Maybe use QTest::qWaitForWindowExposed()
-        // https://doc.qt.io/qt-5/qtest.html#qWaitForWindowExposed
-        // TODO Do we need to create a QWindow first, as parent for this?
-        // TODO Do we need to make sure widget has a non-null parent?
 
-        // This is needed to may sure that text in the spinner is selected, so that
-        // as we type in characters, the initial text ("1") is erased
+        // This is needed to make sure that text in the spinner is selected, so that
+        // as we type in characters, the initial text ("0" or "1") is erased
         mGoToLineWidget.setFocus();
 
         mSpinner = findWidgetOfType<QSpinBox>();
