@@ -2,6 +2,7 @@
 
 #include <QTest>
 #include <QSignalSpy>
+#include <QApplication>
 
 #include "goto_line_tool.hpp"
 
@@ -10,6 +11,14 @@ using namespace ScIDE;
 // DO NOT USE ANY Qt Test checkers, like QVERIFY, QCOMPARE - as any test failures are currently not detected
 
 BOOST_AUTO_TEST_CASE(GoToLineTool_emits_signal_when_Go_button_clicked) {
+    char  arg0[] = "programName";
+    char  arg1[] = "arg";
+    char  arg2[] = "another arg";
+    char* argv[] = { &arg0[0], &arg1[0], &arg2[0], NULL };
+    int   argc   = (int)(sizeof(argv) / sizeof(argv[0])) - 1;
+
+    QApplication the_application(argc, &argv[0]);
+
     GoToLineTool widget;
     widget.raise();
     widget.show();
