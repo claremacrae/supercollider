@@ -14,6 +14,7 @@ protected:
     GoToLineTool mGoToLineWidget;
     QSpinBox* mSpinner = nullptr;
     QToolButton* mGoButton = nullptr;
+    std::unique_ptr<QSignalSpy> activatedSpy;
 
     GoToLineToolFixture() {
         mGoToLineWidget.raise();
@@ -35,30 +36,30 @@ protected:
             REQUIRE(mSpinner != nullptr);
             REQUIRE(mGoButton != nullptr);
         }
+
+        activatedSpy = std::unique_ptr<QSignalSpy>(new QSignalSpy(&mGoToLineWidget, SIGNAL(activated(int))));
+        REQUIRE(activatedSpy->isValid());
     }
 };
 
 TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button clicked") {
     mGoToLineWidget.setMaximum(27);
 
-    QSignalSpy activatedSpy(&mGoToLineWidget, SIGNAL(activated(int)));
-    REQUIRE(activatedSpy.isValid());
-
     // Type a number, one digit at a time
     QTest::keyClicks(mSpinner, "1");
     QTest::keyClicks(mSpinner, "7");
 
     // Check that no signals have yet been emitted:
-    REQUIRE(activatedSpy.count() == 0);
+    REQUIRE(activatedSpy->count() == 0);
 
     // Clicking the Go button:
     mGoButton->click();
 
     // Check the activated() signal was emitted only once:
-    REQUIRE(activatedSpy.count() == 1);
+    REQUIRE(activatedSpy->count() == 1);
 
     // And check that the signal emitted the correct value
-    QList<QVariant> arguments = activatedSpy.takeFirst();
+    QList<QVariant> arguments = activatedSpy->takeFirst();
     QVariant argument = arguments.at(0);
     CHECK(argument.type() == QVariant::Int);
     CHECK(argument.toInt() == 17);
