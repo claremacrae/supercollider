@@ -25,6 +25,9 @@ TEST_CASE("ColorWidget changing color updates and emits correctly") {
     REQUIRE(colorChangedSpy.isValid());
 
     // Act
+    // Simplifying assumption: We don't want to deal with the pop-up color dialog
+    // and clicking on it to select a color. So instead simulate its effect
+    // by calling the slot that it calls.
     widget.setColor(red);
 
     // Assert
