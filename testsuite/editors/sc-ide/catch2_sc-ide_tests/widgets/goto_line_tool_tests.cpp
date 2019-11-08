@@ -42,8 +42,7 @@ protected:
 
     void checkActivatedSignalValue(int expectedSignalValue) {
         INFO("Check GoToLineTool::activated() signal has been emitted with correct value.");
-        QList<QVariant> arguments = mActivatedSpy->takeFirst();
-        const QVariant& signalArgument = arguments.at(0);
+        const QVariant& signalArgument = (*mActivatedSpy).at(0).at(0);
         CHECK(signalArgument.type() == QVariant::Int);
         CHECK(signalArgument.toInt() == expectedSignalValue);
     }
