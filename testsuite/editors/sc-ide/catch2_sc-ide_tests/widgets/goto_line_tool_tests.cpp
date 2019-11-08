@@ -12,8 +12,8 @@ using namespace ScIDE;
 class GoToLineToolFixture {
 protected:
     GoToLineTool mGoToLineWidget;
-    QSpinBox* mSpinner = nullptr;
 private:
+    QSpinBox* mSpinner = nullptr;
     QToolButton* mGoButton = nullptr;
     std::unique_ptr<QSignalSpy> mActivatedSpy;
 
@@ -43,6 +43,10 @@ protected:
         REQUIRE(mActivatedSpy->isValid());
     }
 
+    void typeCharacterInSpinner(QChar character) {
+        QTest::keyClicks(mSpinner, character);
+    }
+
     void clickGoButton() {
         mGoButton->click();
     }
@@ -63,8 +67,8 @@ TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button 
     mGoToLineWidget.setMaximum(27);
 
     // Type a number, one digit at a time
-    QTest::keyClicks(mSpinner, "1");
-    QTest::keyClicks(mSpinner, "7");
+    typeCharacterInSpinner('1');
+    typeCharacterInSpinner('7');
 
     // Check that no signals have yet been emitted:
     checkActivatedSignalCount(0);
