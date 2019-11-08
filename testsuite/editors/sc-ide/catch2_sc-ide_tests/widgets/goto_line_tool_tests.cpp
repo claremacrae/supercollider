@@ -9,14 +9,25 @@ using namespace ScIDE;
 
 // DO NOT USE ANY Qt Test checkers, like QVERIFY, QCOMPARE - as any test failures are currently not detected
 
-TEST_CASE("GoToLineTool emits signal when Go button clicked") {
+class GoToLineToolFixture {
+protected:
     GoToLineTool widget;
-    widget.raise();
-    widget.show();
-    // TODO Maybe use QTest::qWaitForWindowExposed()
-    // https://doc.qt.io/qt-5/qtest.html#qWaitForWindowExposed
-    // TODO Do we need to create a QWindow first, as parent for this?
-    // TODO Do we need to make sure widget has a non-null parent?
+
+    GoToLineToolFixture() {
+        widget.raise();
+        widget.show();
+        // TODO Maybe use QTest::qWaitForWindowExposed()
+        // https://doc.qt.io/qt-5/qtest.html#qWaitForWindowExposed
+        // TODO Do we need to create a QWindow first, as parent for this?
+        // TODO Do we need to make sure widget has a non-null parent?
+
+        // This is needed to may sure that text in the spinner is selected, so that
+        // as we type in characters, the initial text ("1") is erased
+        widget.setFocus();
+    }
+};
+
+TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button clicked") {
     widget.setMaximum(27);
 
     auto spinner = widget.findChild<QSpinBox*>();
@@ -27,10 +38,6 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
         REQUIRE(spinner != nullptr);
         REQUIRE(goButton != nullptr);
     }
-
-    // This is needed to may sure that text in the spinner is selected, so that
-    // as we type in characters, the initial text ("1") is erased
-    widget.setFocus();
 
     QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
     REQUIRE(activatedSpy.isValid());
