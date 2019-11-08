@@ -40,6 +40,13 @@ protected:
         activatedSpy = std::unique_ptr<QSignalSpy>(new QSignalSpy(&mGoToLineWidget, SIGNAL(activated(int))));
         REQUIRE(activatedSpy->isValid());
     }
+
+    void checkActivatedSignalValue(int expectedValue) {
+        QList<QVariant> arguments = activatedSpy->takeFirst();
+        QVariant argument = arguments.at(0);
+        CHECK(argument.type() == QVariant::Int);
+        CHECK(argument.toInt() == expectedValue);
+    }
 };
 
 TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button clicked") {
@@ -59,8 +66,5 @@ TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button 
     REQUIRE(activatedSpy->count() == 1);
 
     // And check that the signal emitted the correct value
-    QList<QVariant> arguments = activatedSpy->takeFirst();
-    QVariant argument = arguments.at(0);
-    CHECK(argument.type() == QVariant::Int);
-    CHECK(argument.toInt() == 17);
+    checkActivatedSignalValue( 17 );
 }
