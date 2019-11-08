@@ -18,7 +18,10 @@ TEST_CASE("ColorWidget changing color updates and emits correctly") {
     // Arrange
     ColorWidget widget;
     QColor red("red");
+
+    // Qt5 "pointer-to-member-function" connection for compile-time checking
     QSignalSpy colorChangedSpy(&widget, &ColorWidget::colorChanged);
+    // Always check that the spy is valid:
     REQUIRE(colorChangedSpy.isValid());
 
     // Act
