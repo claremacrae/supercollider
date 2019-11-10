@@ -53,7 +53,7 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
     // Check the activated() signal was emitted only once:
     REQUIRE(activatedSpy.count() == 1);
 
-    // And check that the signal emitted the new value
+    // And check that the signal emitted the new value:
     QList<QVariant> arguments = activatedSpy.takeFirst();
     QVariant argument = arguments.at(0);
     CHECK(argument.type() == QVariant::Int);
