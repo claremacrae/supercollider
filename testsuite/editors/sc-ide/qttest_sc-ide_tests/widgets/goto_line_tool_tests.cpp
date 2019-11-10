@@ -3,6 +3,8 @@
 
 #include "auto_test.hpp"
 
+#include <memory>
+
 #include "goto_line_tool.hpp"
 
 using namespace ScIDE;
