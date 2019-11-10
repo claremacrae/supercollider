@@ -55,7 +55,7 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
 
     // And check that the signal emitted the new value:
     QList<QVariant> arguments = activatedSpy.takeFirst();
-    QVariant argument = arguments.at(0);
+    const QVariant& argument = arguments.at(0);
     CHECK(argument.type() == QVariant::Int);
     CHECK(argument.toInt() == 17);
 }
