@@ -13,7 +13,7 @@ TEST_CASE("ColorWidget initial state") {
     CHECK(widget.color() == expected_color);
 }
 
-TEST_CASE("ColorWidget changing color updates and emits correctly") {
+TEST_CASE("ColorWidget changing color updates correctly") {
     // Arrange
     ColorWidget widget;
     QColor red("red");
@@ -23,5 +23,4 @@ TEST_CASE("ColorWidget changing color updates and emits correctly") {
 
     // Assert
     CHECK(widget.color() == red);
-    // TODO Check that signals are emitted correctly, and only once
 }
