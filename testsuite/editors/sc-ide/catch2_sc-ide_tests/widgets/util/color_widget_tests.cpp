@@ -6,7 +6,6 @@
 
 using namespace ScIDE;
 
-// TODO Consider adding tags for tests
 TEST_CASE("ColorWidget initial state") {
     ColorWidget widget;
     QColor expected_color(0, 0, 0, 255);
