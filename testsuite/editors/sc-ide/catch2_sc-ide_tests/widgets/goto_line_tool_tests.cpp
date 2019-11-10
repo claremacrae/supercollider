@@ -24,7 +24,7 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
         REQUIRE(goButton != nullptr);
     }
 
-    // This is needed to may sure that text in the spinner is selected, so that
+    // This is needed to make sure that text in the spinner is selected, so that
     // as we type in characters, the initial text ("1") is erased
     widget.setFocus();
 
