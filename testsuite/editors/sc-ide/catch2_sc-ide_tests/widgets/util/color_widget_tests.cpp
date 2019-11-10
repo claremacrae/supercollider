@@ -12,6 +12,12 @@ TEST_CASE("ColorWidget initial state") {
     CHECK(widget.color() == expected_color);
 }
 
+TEST_CASE("ColorWidget initial state - approval testing") {
+    ColorWidget widget;
+    auto color = Catch::StringMaker<QColor>::convert(widget.color());
+    CHECK(color == "(0, 0, 0), alpha = 1");
+}
+
 TEST_CASE("ColorWidget changing color updates correctly") {
     // Arrange
     ColorWidget widget;
