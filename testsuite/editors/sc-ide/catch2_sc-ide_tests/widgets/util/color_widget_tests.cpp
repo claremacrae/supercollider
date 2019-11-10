@@ -33,7 +33,6 @@ TEST_CASE("ColorWidget changing color updates and emits correctly") {
     // Assert
     CHECK(widget.color() == red);
     REQUIRE(colorChangedSpy.count() == 1);
-    const QColor colorEmittedBySignal =
-            qvariant_cast<QColor>(colorChangedSpy.at(0).at(0));
+    const QColor colorEmittedBySignal = qvariant_cast<QColor>(colorChangedSpy.at(0).at(0));
     REQUIRE(colorEmittedBySignal == red);
 }
