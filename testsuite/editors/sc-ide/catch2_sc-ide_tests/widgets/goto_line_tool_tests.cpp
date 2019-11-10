@@ -23,13 +23,10 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
 
     // Allow us to interact with widgets inside GoToLineTool:
     auto spinner = widget.findChild<QSpinBox*>();
-    auto goButton = widget.findChild<QToolButton*>();
+    REQUIRE(spinner != nullptr);
 
-    {
-        INFO("This test is no longer valid: the class being test has been changed");
-        REQUIRE(spinner != nullptr);
-        REQUIRE(goButton != nullptr);
-    }
+    auto goButton = widget.findChild<QToolButton*>();
+    REQUIRE(goButton != nullptr);
 
     // Enable tracking of one signal
     QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
