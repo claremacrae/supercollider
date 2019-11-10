@@ -29,8 +29,13 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
     REQUIRE(goButton != nullptr);
 
     // Enable tracking of one signal
-    QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
+    // New-style code
+    QSignalSpy activatedSpy(&widget, &GoToLineTool::activated);
     REQUIRE(activatedSpy.isValid());
+
+    // Old-style code
+    //QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
+    //REQUIRE(activatedSpy.isValid());
 
     // --------------------------------------------------------
     // Act
