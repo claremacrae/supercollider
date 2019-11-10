@@ -41,9 +41,6 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
     QTest::keyClicks(spinner, "1");
     QTest::keyClicks(spinner, "7");
 
-    // Check that no signals have yet been emitted:
-    REQUIRE(activatedSpy.count() == 0);
-
     // Clicking the Go button:
     goButton->click();
 
