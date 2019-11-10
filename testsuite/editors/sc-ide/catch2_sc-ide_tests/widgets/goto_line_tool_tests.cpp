@@ -34,8 +34,8 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
     REQUIRE(activatedSpy.isValid());
 
     // Old-style code
-    //QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
-    //REQUIRE(activatedSpy.isValid());
+    // QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
+    // REQUIRE(activatedSpy.isValid());
 
     // --------------------------------------------------------
     // Act
