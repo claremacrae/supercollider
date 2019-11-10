@@ -17,6 +17,10 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
     widget.show();
     widget.setMaximum(27);
 
+    // This is needed to make sure that text in the spinner is selected, so that
+    // as we type in characters, the initial text ("1") is erased
+    widget.setFocus();
+
     // Allow us to interact with widgets inside GoToLineTool:
     auto spinner = widget.findChild<QSpinBox*>();
     auto goButton = widget.findChild<QToolButton*>();
@@ -26,10 +30,6 @@ TEST_CASE("GoToLineTool emits signal when Go button clicked") {
         REQUIRE(spinner != nullptr);
         REQUIRE(goButton != nullptr);
     }
-
-    // This is needed to make sure that text in the spinner is selected, so that
-    // as we type in characters, the initial text ("1") is erased
-    widget.setFocus();
 
     // Enable tracking of one signal
     QSignalSpy activatedSpy(&widget, SIGNAL(activated(int)));
