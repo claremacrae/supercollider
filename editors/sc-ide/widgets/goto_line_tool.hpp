@@ -43,9 +43,9 @@ public:
         mSpinBox->setMinimum(0);
         mSpinBox->setMaximum(0);
 
-        QToolButton* goBtn = new QToolButton;
-        goBtn->setText(tr("Go"));
-        goBtn->setAutoRaise(true);
+        mGoBtn = new QToolButton;
+        mGoBtn->setText(tr("Go"));
+        mGoBtn->setAutoRaise(true);
 
         QLabel* label = new QLabel(tr("Line:"));
 
@@ -53,14 +53,14 @@ public:
         layout->setContentsMargins(0, 0, 0, 0);
         layout->addWidget(label);
         layout->addWidget(mSpinBox);
-        layout->addWidget(goBtn);
+        layout->addWidget(mGoBtn);
         layout->addStretch();
 
         setLayout(layout);
 
         setFocusProxy(mSpinBox);
 
-        connect(goBtn, SIGNAL(clicked()), this, SLOT(go()));
+        connect(mGoBtn, SIGNAL(clicked()), this, SLOT(go()));
         connect(mSpinBox, SIGNAL(editingFinished()), this, SLOT(onEditingFinished()));
     }
 
@@ -80,6 +80,8 @@ public:
     void setValue(int value) { mSpinBox->setValue(value); }
 
     QSpinBox* spinBox() { return mSpinBox; }
+
+    QToolButton* goButton() { return mGoBtn; }
 
 public slots:
 
@@ -125,6 +127,7 @@ private slots:
 
 private:
     QSpinBox* mSpinBox;
+    QToolButton* mGoBtn;
     QPointer<GenericCodeEditor> mEditor;
 };
 

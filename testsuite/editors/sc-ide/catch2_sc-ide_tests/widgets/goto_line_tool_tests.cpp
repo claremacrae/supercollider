@@ -28,7 +28,7 @@ protected:
         mGoToLineWidget.setFocus();
 
         mSpinner = mGoToLineWidget.spinBox();
-        mGoButton = findWidgetOfType<QToolButton>();
+        mGoButton = mGoToLineWidget.goButton();
 
         mActivatedSpy = std::unique_ptr<QSignalSpy>(new QSignalSpy(&mGoToLineWidget, &GoToLineTool::activated));
         REQUIRE(mActivatedSpy->isValid());
@@ -47,15 +47,6 @@ protected:
         const QVariant& signalArgument = (*mActivatedSpy).at(0).at(0);
         CHECK(signalArgument.type() == QVariant::Int);
         CHECK(signalArgument.toInt() == expectedSignalValue);
-    }
-
-private:
-    template <class WidgetType> WidgetType* findWidgetOfType() {
-        auto result = mGoToLineWidget.findChild<WidgetType*>();
-        INFO("This test is no longer valid: GoToLineTool has been changed and no longer has a "
-             << typeid(WidgetType).name());
-        REQUIRE(result != nullptr);
-        return result;
     }
 };
 
