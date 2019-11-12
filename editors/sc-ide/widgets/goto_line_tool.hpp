@@ -79,6 +79,8 @@ public:
 
     void setValue(int value) { mSpinBox->setValue(value); }
 
+    QSpinBox* spinBox() { return mSpinBox; }
+
 public slots:
 
     void setMaximum(int max) {

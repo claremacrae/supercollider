@@ -27,7 +27,7 @@ protected:
         // as we type in characters, the initial text ("0" or "1") is erased
         mGoToLineWidget.setFocus();
 
-        mSpinner = findWidgetOfType<QSpinBox>();
+        mSpinner = mGoToLineWidget.spinBox();
         mGoButton = findWidgetOfType<QToolButton>();
 
         mActivatedSpy = std::unique_ptr<QSignalSpy>(new QSignalSpy(&mGoToLineWidget, &GoToLineTool::activated));
