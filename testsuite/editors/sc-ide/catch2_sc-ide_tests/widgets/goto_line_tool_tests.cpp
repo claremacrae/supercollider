@@ -52,7 +52,7 @@ protected:
 
 TEST_CASE_METHOD(GoToLineToolFixture, "GoToLineTool emits signal when Go button clicked") {
     // Arbitrary upper limit in number of lines.
-    // When used in the application, this would be obtained from the open docunent
+    // When used in the application, this would be obtained from the open document
     setMaximumLineCount(27);
 
     // Type a number, one digit at a time
