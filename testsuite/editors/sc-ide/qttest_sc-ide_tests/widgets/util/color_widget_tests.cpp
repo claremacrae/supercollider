@@ -1,6 +1,7 @@
 #include <QTest>
 
 #include "auto_test.hpp"
+#include "safe_qcompare.h"
 
 #include "color_widget.hpp"
 

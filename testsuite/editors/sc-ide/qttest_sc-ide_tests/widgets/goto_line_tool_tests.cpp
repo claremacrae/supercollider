@@ -2,6 +2,7 @@
 #include <QSignalSpy>
 
 #include "auto_test.hpp"
+#include "safe_qcompare.h"
 
 #include <memory>
 

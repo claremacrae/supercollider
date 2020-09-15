@@ -21,6 +21,6 @@ target_include_directories(${exe_name} PRIVATE
         )
 
 find_package(Qt5 COMPONENTS Test REQUIRED)
-target_link_libraries( ${exe_name} libscide Qt5::Test )
+target_link_libraries( ${exe_name} libscide Qt5::Test common_test_code)
 
 add_test(${exe_name} ${EXECUTABLE_OUTPUT_PATH}/${exe_name})
