@@ -1,5 +1,7 @@
 #pragma once
 
+// TODO Find a away to prevent this being included before <QTest>
+
 #include <type_traits>
 #include <QCoreApplication>
 #include <QTest>
