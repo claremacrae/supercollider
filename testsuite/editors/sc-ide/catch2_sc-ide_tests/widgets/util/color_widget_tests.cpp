@@ -1,6 +1,7 @@
 #include "catch.hpp"
 
 #include <QSignalSpy>
+#include "safe_qcompare.h"
 
 #include "color_widget.hpp"
 
@@ -35,4 +36,8 @@ TEST_CASE("ColorWidget changing color updates and emits correctly") {
     REQUIRE(colorChangedSpy.count() == 1);
     const QColor colorEmittedBySignal = qvariant_cast<QColor>(colorChangedSpy.at(0).at(0));
     REQUIRE(colorEmittedBySignal == red);
+
+    // The Qt way of checking gets silently swallowed, so should fail to compile,
+    // when safe_qcompare.h is included
+    // QCOMPARE(colorEmittedBySignal, red);
 }

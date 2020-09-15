@@ -2,6 +2,7 @@
 
 #include <QTest>
 #include <QSignalSpy>
+#include "safe_qcompare.h"
 
 #include <memory>
 
@@ -47,6 +48,10 @@ protected:
         const QVariant& signalArgument = (*mActivatedSpy).at(0).at(0);
         CHECK(signalArgument.type() == QVariant::Int);
         CHECK(signalArgument.toInt() == expectedSignalValue);
+
+        // The Qt way of checking gets silently swallowed, so should fail to compile,
+        // when safe_qcompare.h is included
+        //QCOMPARE(signalArgument.toInt(), expectedSignalValue);
     }
 };
 

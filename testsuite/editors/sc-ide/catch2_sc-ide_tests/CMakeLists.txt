@@ -15,6 +15,6 @@ target_include_directories(${exe_name} PRIVATE
 # However, Qt Test's QSignalSpy and similar code can also be used to help in writing tests.
 # Qt Test's assertions like QVERIFY, QCOMPARE MUST NOT BE USED as any test failures are currently not detected
 find_package(Qt5 COMPONENTS Test REQUIRED)
-target_link_libraries( ${exe_name} libscide catch Qt5::Test )
+target_link_libraries( ${exe_name} libscide catch Qt5::Test common_test_code)
 
 add_test(${exe_name} ${EXECUTABLE_OUTPUT_PATH}/${exe_name})
