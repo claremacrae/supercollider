@@ -12,7 +12,7 @@ void sender(...);
 #undef QCOMPARE
 #define QCOMPARE(actual, expected) \
 do {using namespace qft;\
-    static_assert(std::is_same_v<decltype(sender()), QObject*>, "Cannot user QCOMPARE outside of a QObject slot");\
+    static_assert(std::is_same<decltype(sender()), QObject*>::value, "Cannot user QCOMPARE outside of a QObject slot");\
     if (!QTest::qCompare(actual, expected, #actual, #expected, __FILE__, __LINE__))\
         return;\
 } while (false)
